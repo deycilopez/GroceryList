@@ -1,5 +1,15 @@
+var myList = [];
 function addItem(){
   var input = document.getElementById("newItem").value;
+  if (myList.indexOf(input) == -1);
+    myList.push(input);
+    console.log(myList);
+  }
+  else {
+
+  }
+
+function addItem(){
   var list = document.getElementById("ListDisplay");
   var item = document.createElement("li");
   var itemName = document.createTextNode(input);
@@ -23,6 +33,10 @@ function removeParentListItem()
   var mom = this.parentNode;
   var grandma = mom.parentNode;
   grandma.removeChild(mom);
+  var itemRemove = mom.firstChild;
+  var itemIndex = myList.indexOf(itemRemove);
+  mylist.splice(itemIndex,1)
+  console.log(mylist);
 }
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) {
