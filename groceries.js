@@ -6,9 +6,7 @@ function addItem(){
     console.log(myList);
   }
   else {
-
   }
-
 function addItem(){
   var list = document.getElementById("ListDisplay");
   var item = document.createElement("li");
@@ -26,6 +24,7 @@ function addItem(){
   item.appendChild(btnClose);
   item.appendChild(itemName);
   list.appendChild(item);
+}
   document.getElementById("newItem").innerHTML = "";
 }
 function removeParentListItem()
@@ -36,7 +35,15 @@ function removeParentListItem()
   var itemRemove = mom.firstChild;
   var itemIndex = myList.indexOf(itemRemove);
   mylist.splice(itemIndex,1)
-  console.log(mylist);
+  console.log(mylist.toString());
+}
+function saveList(){
+  varsaveList = [];
+  var i=0;
+  for(i=0; i<myList.length; i++){
+    saveList[i] = myList[i]
+  }
+  setCookie ("saved", saveList.toString(), 1);
 }
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) {
