@@ -1,13 +1,18 @@
+window.onload = loadCookieList;
 var myList = [];
+var Listinstring = "";
+var input = "";
+
 function addItem(){
+  var input = documet.getElementById("newItem").value;
+  displayItem(input);
+  documet.getElementById("newItem").innerHTML = "";
+}
+function displayItem(input){
   var input = document.getElementById("newItem").value;
-  if (myList.indexOf(input) == -1);
+  if (myList.indexOf(input) < 0);{
     myList.push(input);
     console.log(myList);
-  }
-  else {
-  }
-function addItem(){
   var list = document.getElementById("ListDisplay");
   var item = document.createElement("li");
   var itemName = document.createTextNode(input);
@@ -24,8 +29,15 @@ function addItem(){
   item.appendChild(btnClose);
   item.appendChild(itemName);
   list.appendChild(item);
-}
   document.getElementById("newItem").innerHTML = "";
+}
+}
+function loadCookieList(){
+  var namecookie = getCookie("savedlist");
+  var arrayCookie = namecookie.split(",");
+  for(var i = 0; i<arrayCookie.length; i++){
+    displayItem(arrayCookie[i]);
+  }
 }
 function removeParentListItem()
 {
@@ -43,7 +55,12 @@ function saveList(){
   for(i=0; i<myList.length; i++){
     saveList[i] = myList[i]
   }
-  setCookie ("saved", saveList.toString(), 1);
+  setCookie ("savedlist", saveList.toString(), 1);
+}
+function clearList(){
+  document.getElementById("listDisplay").innerHTML = "";
+  mylist = [];
+  setCookie("savedlist", "", 1);
 }
 //courtesy of w3schools, from: http://www.w3schools.com/js/js_cookies.asp
 function setCookie(cname, cvalue, exdays) {
